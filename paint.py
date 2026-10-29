@@ -41,6 +41,17 @@ def rectangle(start, end):
     goto(start.x, start.y)
     end_fill()
 
+def triangle(start, end):
+    "Draw complete triangle from start to end."
+    up()
+    goto(start.x, start.y)
+    down()
+    begin_fill()
+    goto(end.x, end.y)
+    goto(start.x - (end.x - start.x), end.y)
+    goto(start.x, start.y)
+    end_fill()
+
 def tap(x, y):
     "Store start or draw shape."
     start = state['start']
@@ -66,6 +77,7 @@ listen()
 onkey(lambda: store('shape', line), 'l')
 onkey(lambda: store('shape', square), 's')
 onkey(lambda: store('shape', rectangle), 'r')
+onkey(lambda: store('shape', triangle), 't')
 
 onkey(lambda: color('black'), 'K')
 onkey(lambda: color('white'), 'W')
